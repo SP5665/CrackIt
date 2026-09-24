@@ -40,3 +40,23 @@ CREATE TABLE questions (
     FOREIGN KEY (interview_session_id) REFERENCES interview_sessions(id),
     FOREIGN KEY (parent_question_id) REFERENCES questions(id)
 );
+
+CREATE TABLE answers (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    question_id INT NOT NULL,
+    interview_session_id INT NOT NULL,
+    answer_text TEXT NOT NULL,
+
+    relevance_score DECIMAL(4,2),
+    specificity_score DECIMAL(4,2),
+    technical_depth_score DECIMAL(4,2),
+    clarity_score DECIMAL(4,2),
+
+    decision VARCHAR(30),
+    evaluator_feedback TEXT,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (question_id) REFERENCES questions(id),
+    FOREIGN KEY (interview_session_id) REFERENCES interview_sessions(id)
+);
