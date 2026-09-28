@@ -1,6 +1,7 @@
-from app.api.users import router as users_router
 from fastapi import FastAPI
-from app.models.users import User
+from app.api.users import router as users_router
+from app.api.resumes import router as resumes_router
+from app.models import User, Resume
 
 app = FastAPI(
     title="CrackIt API",
@@ -9,6 +10,7 @@ app = FastAPI(
 )
 
 app.include_router(users_router)
+app.include_router(resumes_router)
 
 @app.get("/")
 def root():
