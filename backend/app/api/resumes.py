@@ -20,13 +20,12 @@ def get_resumes(db: Session = Depends(get_db)):
 def upload_resume(file: UploadFile = File(...)):
 
     allowed_types = [
-        "application/pdf",
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        "application/pdf"
     ]
 
     if file.content_type not in allowed_types:
         return {
-            "error": "Only PDF and DOCX files are allowed"
+            "error": "Only PDF files are allowed"
         }
 
     return {
